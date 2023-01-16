@@ -1,7 +1,7 @@
 uillean-bore-plotter
 
 # installation
-On a system with python3, change directory to this project and run
+On a system with python installed, change directory to this project and run
 ```shell
 pip install -r requirements.txt
 ```
@@ -19,10 +19,13 @@ The first column in a CSV file should be the distance from the chanter bell in
 mm, and the second column should be the probe diameter in mm at that distance.
 The plots should contain only values, no headers.
 
-## command
-Run
+## script
+cd to the project directory and run
 ```shell
-python3 plot_bore_data.py <path_to_subdirectory>
+python plot_bore_data.py <path_to_subdirectory>
+
+# e.g.
+python plot_bore_data.py data/B_hannan_coyne/chanter
 ```
 or make the file executable and run
 ```shell
