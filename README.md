@@ -22,7 +22,11 @@ The plots should contain only values, no headers.
 ## command
 Run
 ```shell
-plot_bore_data.py <path_to_subdirectory>
+python3 plot_bore_data.py <path_to_subdirectory>
+```
+or make the file executable and run
+```shell
+./plot_bore_data.py <path_to_subdirectory>
 ```
 
 and extrapolate the data you need using the matplotlib plot.
