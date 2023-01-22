@@ -9,6 +9,7 @@ import math
 import matplotlib.pyplot as plt
 from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
 import pandas as pd
+from scipy import polyval, polyfit
 
 # create argparser
 def init_argparse() -> argparse.ArgumentParser:
@@ -22,6 +23,11 @@ def init_argparse() -> argparse.ArgumentParser:
     parser.add_argument(
         "plot_directory", type=str, help='''The directory from which to plot all CSV
         files'''
+    )
+    parser.add_argument(
+        "--fit-polynomial-degree", type=int, dest="degree", default=3,
+        help='''The degree of the
+        polynomical used to fit the bore data. Defaults to 3'''
     )
     return parser
 
@@ -46,6 +52,11 @@ def main() -> None:
 
         # plot data
         ax.plot(x, y, linewidth=2.0, label=series_name)
+
+        # fit data and plot fit line
+        a, b, c, d = polyfit(x, y, args.degree)
+        y_predicted = polyval([a, b, c, d], x)
+        ax.plot(x, y_predicted, linewidth=2.0, label=f"fit{series_name}")
 
     # set labels and titles
     ax.set_xlabel("Distance from bell (mm)")
