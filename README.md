@@ -35,6 +35,7 @@ calculate averages.
 TODO: calculate the average for the user.
 
 ## Running the script
+
 cd to the project directory and run
 ```shell
 python plot_bore_data.py <path_to_subdirectory>
@@ -47,4 +48,13 @@ or make the file executable and run
 ./plot_bore_data.py <path_to_subdirectory>
 ```
 
-and extrapolate the data you need using the matplotlib plot.
+Important note: the `<path_to_subdirectory>` above must not have any intermediate subdirectories
+containing the CSV files: it must be the direct parent.
+
+For help using the script, run
+```bash
+./plot_bore_data.py --help
+```
+
+Extrapolate the data you need using the matplotlib plot tools. The rectangle zoom is very useful to
+home in on a certain region to visually acquire an average of bore values.
