@@ -25,9 +25,8 @@ def init_argparse() -> argparse.ArgumentParser:
         files'''
     )
     parser.add_argument(
-        "--fit-polynomial-degree", type=int, dest="degree", default=3,
-        help='''The degree of the
-        polynomical used to fit the bore data. Defaults to 3'''
+        "--fit-plots", dest="fit_plots", action='store_true',
+        help='''Fit the plots with a 3rd degree polynomial for each series'''
     )
     return parser
 
@@ -54,9 +53,10 @@ def main() -> None:
         ax.plot(x, y, linewidth=2.0, label=series_name)
 
         # fit data and plot fit line
-        a, b, c, d = polyfit(x, y, args.degree)
-        y_predicted = polyval([a, b, c, d], x)
-        ax.plot(x, y_predicted, linewidth=2.0, label=f"fit{series_name}")
+        if args.fit_plots:
+            a, b, c, d = polyfit(x, y, 3)
+            y_predicted = polyval([a, b, c, d], x)
+            ax.plot(x, y_predicted, linewidth=2.0, label=f"fit{series_name}")
 
     # set labels and titles
     ax.set_xlabel("Distance from bell (mm)")
